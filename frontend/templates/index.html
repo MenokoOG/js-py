@@ -9,19 +9,31 @@
 </head>
 <body class="bg-white text-black">
     <div class="container mx-auto p-4">
-        <h1 class="text-3xl font-bold text-center mb-4">Random Dog Gallery</h1>
-        <div class="flex justify-center mb-4">
-            <button id="fetchDog" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Fetch Random Dog</button>
+        <h1 class="text-3xl font-bold text-center mb-8">Random Dog Gallery</h1>
+        <div class="flex justify-center mb-8">
+            <button id="fetchDog" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Fetch Random Dogs</button>
         </div>
-        <div id="dogImage" class="flex justify-center">
-            <!-- Dog image will be inserted here -->
+        <div id="dogGallery" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+            <!-- Dog cards will be inserted here -->
         </div>
     </div>
     <script>
         document.getElementById('fetchDog').addEventListener('click', async () => {
-            const response = await fetch('/dog');
-            const data = await response.json();
-            document.getElementById('dogImage').innerHTML = `<img src="${data.message}" alt="Random Dog" class="rounded shadow-lg">`;
+            const gallery = document.getElementById('dogGallery');
+            gallery.innerHTML = ''; // Clear previous images
+            for (let i = 0; i < 6; i++) {
+                const response = await fetch('/dog');
+                const data = await response.json();
+                const card = document.createElement('div');
+                card.className = 'max-w-xs rounded overflow-hidden shadow-lg bg-white bg-opacity-80';
+                card.innerHTML = `
+                    <img class="w-full" src="${data.message}" alt="Random Dog">
+                    <div class="px-6 py-4">
+                        <div class="font-bold text-xl mb-2">Random Dog</div>
+                    </div>
+                `;
+                gallery.appendChild(card);
+            }
         });
     </script>
 </body>
