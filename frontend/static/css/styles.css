@@ -1,18 +1,18 @@
 body {
-    background-color: rgba(0, 0, 0, 0.1);
+    background-color: #f0f4f8;
 }
 
 h1 {
-    color: rgba(255, 165, 0, 0.9); /* Orange */
+    color: #ff8c00; /* Orange */
 }
 
 button {
-    background-color: rgba(0, 128, 0, 0.8); /* Green */
+    background-color: #1e40af; /* Dark Blue */
     transition: background-color 0.3s ease;
 }
 
 button:hover {
-    background-color: rgba(0, 128, 0, 0.5); /* Green */
+    background-color: #1d4ed8; /* Blue */
 }
 
 .card {
